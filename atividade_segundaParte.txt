@@ -1,0 +1,7 @@
+UPDATE fipe  SET modelo = 'Lata-Velha' WHERE codcarro = 10;
+
+SELECT * FROM fipe;
+
+UPDATE fipe SET ano = '2012' WHERE codcarro = 23;
+
+SELECT * FROM fipe;

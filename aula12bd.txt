@@ -1,0 +1,273 @@
+SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| chevrowagen        |
+| information_schema |
+| mysql              |
+| nintendo           |
+| performance_schema |
+| phpmyadmin         |
+| test               |
++--------------------+
+
+
+ USE chevrowagen;
+
+SHOW TABLES;
++-----------------------+
+| Tables_in_chevrowagen |
++-----------------------+
+| clientes              |
+| itensvendidos         |
+| veiculos              |
+| vendas                |
++-----------------------+
+ SELECT * FROM clientes;
++-----------+-----------------------------------+--------+
+| idcliente | nomecliente                       | estado |
++-----------+-----------------------------------+--------+
+|         1 | Joaquim Jos? da Silva Xavier      | MG     |
+|         2 | Alberto Santos Dumont             | MG     |
+|         3 | Jos? Abelardo Barbosa de Medeiros | PE     |
+|         4 | Raul Santos Seixas                | BA     |
+|         5 | Tancredo de Almeida Neves         | MG     |
+|         6 | J?nio da Silva Quadros            | MS     |
+|         7 | Renato Manfredini J?nior          | RJ     |
++-----------+-----------------------------------+--------+
+ SELECT *
+    -> FROM clientes
+    -> WHERE estado = 'MG';
++-----------+------------------------------+--------+
+| idcliente | nomecliente                  | estado |
++-----------+------------------------------+--------+
+|         1 | Joaquim Jos? da Silva Xavier | MG     |
+|         2 | Alberto Santos Dumont        | MG     |
+|         5 | Tancredo de Almeida Neves    | MG     |
++-----------+------------------------------+--------+
+ SELECT *
+    -> FROM clientes
+    -> WHERE estado <> 'MG';
++-----------+-----------------------------------+--------+
+| idcliente | nomecliente                       | estado |
++-----------+-----------------------------------+--------+
+|         3 | Jos? Abelardo Barbosa de Medeiros | PE     |
+|         4 | Raul Santos Seixas                | BA     |
+|         6 | J?nio da Silva Quadros            | MS     |
+|         7 | Renato Manfredini J?nior          | RJ     |
++-----------+-----------------------------------+--------+
+ SELECT *
+    -> FROM veiculos
+    -> WHERE preco > '10000.00';
++-----------+------------+----------+------+----------+
+| idveiculo | fabricante | modelo   | ano  | preco    |
++-----------+------------+----------+------+----------+
+|       200 | Chevrolet  | Corsa    | 1995 | 11704.00 |
+|       201 | Chevrolet  | Vectra   | 2005 | 27009.00 |
+|       203 | Chevrolet  | Celta    | 2006 | 17888.00 |
+|       204 | Fiat       | Fiorino  | 1997 | 11136.00 |
+|       205 | Fiat       | Palio    | 1999 | 11258.00 |
+|       206 | Ford       | EcoSport | 2009 | 48913.00 |
+|       207 | Ford       | Fiesta   | 1998 | 10355.00 |
+|       208 | Ford       | KA       | 2006 | 16707.00 |
++-----------+------------+----------+------+----------+
+SELECT *
+    -> FROM clientes;
++-----------+-----------------------------------+--------+
+| idcliente | nomecliente                       | estado |
++-----------+-----------------------------------+--------+
+|         1 | Joaquim Jos? da Silva Xavier      | MG     |
+|         2 | Alberto Santos Dumont             | MG     |
+|         3 | Jos? Abelardo Barbosa de Medeiros | PE     |
+|         4 | Raul Santos Seixas                | BA     |
+|         5 | Tancredo de Almeida Neves         | MG     |
+|         6 | J?nio da Silva Quadros            | MS     |
+|         7 | Renato Manfredini J?nior          | RJ     |
++-----------+-----------------------------------+--------+
+ SELECT *
+    -> FROM clientes
+    -> WHERE nomecliente LIKE 'J%';
++-----------+-----------------------------------+--------+
+| idcliente | nomecliente                       | estado |
++-----------+-----------------------------------+--------+
+|         1 | Joaquim Jos? da Silva Xavier      | MG     |
+|         3 | Jos? Abelardo Barbosa de Medeiros | PE     |
+|         6 | J?nio da Silva Quadros            | MS     |
++-----------+-----------------------------------+--------+
+ SELECT *
+    -> FROM clientes
+    -> WHERE nomecliente LIKE '%S';
++-----------+-----------------------------------+--------+
+| idcliente | nomecliente                       | estado |
++-----------+-----------------------------------+--------+
+|         3 | Jos? Abelardo Barbosa de Medeiros | PE     |
+|         4 | Raul Santos Seixas                | BA     |
+|         5 | Tancredo de Almeida Neves         | MG     |
+|         6 | J?nio da Silva Quadros            | MS     |
++-----------+-----------------------------------+--------+
+SELECT *
+    -> FROM clientes
+    -> WHERE nomecliente LIKE '%do%';
++-----------+-----------------------------------+--------+
+| idcliente | nomecliente                       | estado |
++-----------+-----------------------------------+--------+
+|         3 | Jos? Abelardo Barbosa de Medeiros | PE     |
+|         5 | Tancredo de Almeida Neves         | MG     |
++-----------+-----------------------------------+--------+
+ SELECT *
+    -> FROM clientes
+    -> WHERE nomecliente LIKE '_o%';
++-----------+-----------------------------------+--------+
+| idcliente | nomecliente                       | estado |
++-----------+-----------------------------------+--------+
+|         1 | Joaquim Jos? da Silva Xavier      | MG     |
+|         3 | Jos? Abelardo Barbosa de Medeiros | PE     |
++-----------+-----------------------------------+--------+
+SELECT *
+    -> FROM clientes
+    -> WHERE nomecliente LIKE '__n%';
++-----------+---------------------------+--------+
+| idcliente | nomecliente               | estado |
++-----------+---------------------------+--------+
+|         5 | Tancredo de Almeida Neves | MG     |
+|         6 | J?nio da Silva Quadros    | MS     |
+|         7 | Renato Manfredini J?nior  | RJ     |
++-----------+---------------------------+--------+
+3 rows in set (0.004 sec)
+
+MariaDB [chevrowagen]> SELECT *
+    -> FROM vendas;
++---------+------------+-----------+
+| idvenda | datavenda  | idcliente |
++---------+------------+-----------+
+|     400 | 2010-06-11 |         5 |
+|     401 | 2010-06-11 |         1 |
+|     402 | 2010-06-13 |         3 |
+|     403 | 2010-06-21 |         2 |
+|     404 | 2010-07-07 |         7 |
++---------+------------+-----------+
+5 rows in set (0.007 sec)
+
+MariaDB [chevrowagen]> SELECT vendas.idvenda, vendas.datavenda, clientes.nomecliente
+    -> FROM vendas, clientes;
++---------+------------+-----------------------------------+
+| idvenda | datavenda  | nomecliente                       |
++---------+------------+-----------------------------------+
+|     400 | 2010-06-11 | Joaquim Jos? da Silva Xavier      |
+|     401 | 2010-06-11 | Joaquim Jos? da Silva Xavier      |
+|     402 | 2010-06-13 | Joaquim Jos? da Silva Xavier      |
+|     403 | 2010-06-21 | Joaquim Jos? da Silva Xavier      |
+|     404 | 2010-07-07 | Joaquim Jos? da Silva Xavier      |
+|     400 | 2010-06-11 | Alberto Santos Dumont             |
+|     401 | 2010-06-11 | Alberto Santos Dumont             |
+|     402 | 2010-06-13 | Alberto Santos Dumont             |
+|     403 | 2010-06-21 | Alberto Santos Dumont             |
+|     404 | 2010-07-07 | Alberto Santos Dumont             |
+|     400 | 2010-06-11 | Jos? Abelardo Barbosa de Medeiros |
+|     401 | 2010-06-11 | Jos? Abelardo Barbosa de Medeiros |
+|     402 | 2010-06-13 | Jos? Abelardo Barbosa de Medeiros |
+|     403 | 2010-06-21 | Jos? Abelardo Barbosa de Medeiros |
+|     404 | 2010-07-07 | Jos? Abelardo Barbosa de Medeiros |
+|     400 | 2010-06-11 | Raul Santos Seixas                |
+|     401 | 2010-06-11 | Raul Santos Seixas                |
+|     402 | 2010-06-13 | Raul Santos Seixas                |
+|     403 | 2010-06-21 | Raul Santos Seixas                |
+|     404 | 2010-07-07 | Raul Santos Seixas                |
+|     400 | 2010-06-11 | Tancredo de Almeida Neves         |
+|     401 | 2010-06-11 | Tancredo de Almeida Neves         |
+|     402 | 2010-06-13 | Tancredo de Almeida Neves         |
+|     403 | 2010-06-21 | Tancredo de Almeida Neves         |
+|     404 | 2010-07-07 | Tancredo de Almeida Neves         |
+|     400 | 2010-06-11 | J?nio da Silva Quadros            |
+|     401 | 2010-06-11 | J?nio da Silva Quadros            |
+|     402 | 2010-06-13 | J?nio da Silva Quadros            |
+|     403 | 2010-06-21 | J?nio da Silva Quadros            |
+|     404 | 2010-07-07 | J?nio da Silva Quadros            |
+|     400 | 2010-06-11 | Renato Manfredini J?nior          |
+|     401 | 2010-06-11 | Renato Manfredini J?nior          |
+|     402 | 2010-06-13 | Renato Manfredini J?nior          |
+|     403 | 2010-06-21 | Renato Manfredini J?nior          |
+|     404 | 2010-07-07 | Renato Manfredini J?nior          |
++---------+------------+-----------------------------------+
+35 rows in set (0.009 sec)
+
+MariaDB [chevrowagen]> SELECT vendas.idvenda, vendas.datavenda, clientes.nomecliente
+    -> FROM vendas INNER JOIN clientes
+    -> ON vendas.idcliente = clientes.idclientes;
+ERROR 1054 (42S22): Unknown column 'clientes.idclientes' in 'on clause'
+MariaDB [chevrowagen]> SELECT vendas.idvenda, vendas.datavenda, clientes.nomecliente
+    -> FROM vendas INNER JOIN clientes
+    -> ON vendas.idcliente = clientes.idcliente;
++---------+------------+-----------------------------------+
+| idvenda | datavenda  | nomecliente                       |
++---------+------------+-----------------------------------+
+|     400 | 2010-06-11 | Tancredo de Almeida Neves         |
+|     401 | 2010-06-11 | Joaquim Jos? da Silva Xavier      |
+|     402 | 2010-06-13 | Jos? Abelardo Barbosa de Medeiros |
+|     403 | 2010-06-21 | Alberto Santos Dumont             |
+|     404 | 2010-07-07 | Renato Manfredini J?nior          |
++---------+------------+-----------------------------------+
+5 rows in set (0.011 sec)
+
+MariaDB [chevrowagen]> SELECT idvenda,
+    -> datavenda
+    -> ,
+    -> nomecliente
+    -> FROM vendas INNER JOIN clientes
+    -> ON vendas.idcliente = clientes.idcliente;
++---------+------------+-----------------------------------+
+| idvenda | datavenda  | nomecliente                       |
++---------+------------+-----------------------------------+
+|     400 | 2010-06-11 | Tancredo de Almeida Neves         |
+|     401 | 2010-06-11 | Joaquim Jos? da Silva Xavier      |
+|     402 | 2010-06-13 | Jos? Abelardo Barbosa de Medeiros |
+|     403 | 2010-06-21 | Alberto Santos Dumont             |
+|     404 | 2010-07-07 | Renato Manfredini J?nior          |
++---------+------------+-----------------------------------+
+5 rows in set (0.002 sec)
+
+MariaDB [chevrowagen]>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

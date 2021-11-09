@@ -1,0 +1,78 @@
+1. CREATE DATABASE IF NOT EXISTS Editora;
+USE Editora;
+________________________________________________
+2.
+CREATE TABLE Livraria
+(
+idlivraria int not null AUTO_INCREMENT,
+nomelivraria varchar(30) not null,
+endereco varchar(50) not null,
+telefone varchar(20) not null,
+PRIMARY KEY (idlivraria)
+);
+CREATE TABLE NotasFiscais
+(
+idvenda int not null AUTO_INCREMENT,
+datavenda date not null,
+idlivraria int not null,
+PRIMARY KEY(idvenda),
+FOREIGN KEY(idlivraria)
+REFERENCES Livraria(idlivraria)
+);
+CREATE TABLE Livros
+(
+idlivro int not null AUTO_INCREMENT,
+titulodolivro varchar(50) not null,
+autor varchar(50) not null,
+precounitario decimal(5,2) not null,
+PRIMARY KEY(idlivro)
+);
+CREATE TABLE ItensNF
+(
+idvenda int not null,
+idlivro int not null,
+qtdevenda tinyint not null,
+PRIMARY KEY(idvenda, idlivro),
+FOREIGN KEY(idvenda)
+REFERENCES NotasFiscais(idvenda),
+FOREIGN KEY(idlivro)
+REFERENCES Livros(idlivro)
+);
+_______________________________________________
+3.
+INSERT INTO Livraria
+VALUES (null, 'Livraria Francesa', 'Rua Barão de Itapetininga,275', '11 3231-4555'),
+(null, 'Livraria da Vila', 'Rua Fradique Coutinho,915', '15 3814-5811'),
+(null, 'Devir Livraria Ltda', 'Rua Teodureto Souto,624', '11 2127-8787'),
+(null, 'Livraria Cultura', 'Avenida Paulista, 2073', '11 3170-4033'),
+(null, 'Moonshadowns Livraria', 'Rua Treze de Maio,966', '19 3266-3916');
+___________________________________
+4.
+INSERT INTO Livros
+VALUES (null, 'WINDOWS VISTA', 'Suriane, Rogério Massaro', 35.00),
+(null, 'ORGANIZAÇÃO DE SISTEMAS', 'Fernandes, Leila Maria Pinheiro', 34.00),
+(null, 'LÓGICA DE PROGRAMAÇÃO', 'Xavier, Gley Fabiano Cardoso', 87.00),
+(null, 'LINKANIA: UMA TEORIA DE REDES', 'Dimantas, Hernani', 299.00),
+(null, 'INTERNET: NAVEGANDO MELHOR NA WEB', 'Filho, Ozeas Vieira Santana', 40.00),
+(null, 'INCLUSÃO DIGITAL: UMA VISÃO CRÍTICA', 'Cazeloto, Edilson', 47.00),
+(null, 'GUIA INTERNET DE CONECTIVIDADE', 'Cyclades, Brasil', 47.00),
+(null, 'ESTRATÉGIAS PARA A MÍDIA DIGITAL 2.0', 'Correa, Elizabeth Saad', 87.00),
+(null, 'COREL DRAW X4', 'Andrade, Maria Angel Serafim De', 74.00),
+(null, 'COMUNIDADES VIRTUAIS', 'Filho, Jayme Teixeira', 32.00);
+______________________________________________
+5.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
